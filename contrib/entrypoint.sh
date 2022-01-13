@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! uid=$(id -u &>1); then
+if ! uid=$(id -u 2>&1); then
   echo "error getting uid for running user, ${uid}"
   exit 1
 fi
