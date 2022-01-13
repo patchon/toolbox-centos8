@@ -7,6 +7,6 @@ RUN dnf install -y \
   bind-utils       \
   vim
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-c", "sleep 999999999"]
 
 
