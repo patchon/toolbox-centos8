@@ -8,7 +8,6 @@ if ! uid=$(id -u &>1); then
 fi
 
 if ! grep -q x:${uid} /etc/passwd; then
-  cp /etc/passwd ${nss_passwd}
   echo "toolbox:x:${uid}:0:toolbox:/tmp:/bin/bash" >> ${nss_passwd}
 fi
 
