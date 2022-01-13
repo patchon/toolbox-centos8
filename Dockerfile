@@ -10,7 +10,7 @@ RUN dnf install -y          \
   postgresql                \
   bind-utils                \
   vim                     &&\
-  chmod +x /entrypoint.sh &&
-  cp /etc/passwd /tmp/nss_wrapper-passwd
+  chmod +x /entrypoint.sh &&\
+  chmod g+w /etc/passwd
 
 ENTRYPOINT ["/entrypoint.sh"]
