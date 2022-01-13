@@ -8,7 +8,7 @@ if [[ "${uid}" != "0" ]]; then
   echo "toolbox:x:${uid}:0:toolbox:/tmp:/bin/bash" > ${NSS_WRAPPER_PASSWD}
   export NSS_WRAPPER_PASSWD
   export NSS_WRAPPER_GROUP
-  LD_PRELOAD=/usr/local/lib64/libnss_wrapper.so
+  LD_PRELOAD=/usr/lib64/libnss_wrapper.so
   export LD_PRELOAD
 fi
 
