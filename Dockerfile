@@ -2,11 +2,14 @@ FROM centos:8
 
 USER root
 
-RUN dnf install -y \
-  postgresql       \
-  bind-utils       \
-  vim
+COPY contrib/entrypoint.sh /
+RUN dnf install -y  \
+  postgresql        \
+  bind-utils        \
+  vim               &&\
+  chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/bin/bash", "-c", "sleep 999999999"]
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 
