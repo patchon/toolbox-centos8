@@ -1,15 +1,15 @@
 #!/bin/bash
 
-uid=$(id -u)
+nss_passwd="/tmp/nss_wrapper-passwd"
 
-if [[ "${uid}" != "0" ]]; then
-  NSS_WRAPPER_PASSWD=/tmp/passwd.nss_wrapper
-  NSS_WRAPPER_GROUP=/etc/group
-  echo "toolbox:x:${uid}:0:toolbox:/tmp:/bin/bash" > ${NSS_WRAPPER_PASSWD}
-  export NSS_WRAPPER_PASSWD
-  export NSS_WRAPPER_GROUP
-  LD_PRELOAD=/usr/lib64/libnss_wrapper.so
-  export LD_PRELOAD
+if ! uid=$(id -u &>1); then
+  echo "error getting uid for running user, ${uid}"
+  exit 1
 fi
 
-/bin/sleep 9999999
+if ! grep -q x:${uid} /etc/passwd; then
+  cp /etc/passwd ${nss_passwd}
+  echo "toolbox:x:${uid}:0:toolbox:/tmp:/bin/bash" >> ${nss_passwd}
+fi
+
+/bin/sleep 604800
