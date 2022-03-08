@@ -1,17 +1,17 @@
-FROM registry.access.redhat.com/ubi8:8.5-226
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 USER root
 
 COPY contrib/entrypoint.sh /
 
-RUN dnf install -y          \
+RUN microdnf install -y     \
   nss_wrapper               \
   gettext                   \
   python2                   \
   bind-utils                \
   vim                     &&\
   chmod +x /entrypoint.sh &&\
-  chmod g+w /etc/passwd   &&\
+  chmod g+w /etc/passwd
 
 # RUN dnf install -y https://downloads.apache.org/cassandra/redhat/311x/cassandra-3.11.11-1.noarch.rpm &&\
 # rm -f /usr/share/cassandra/lib/six-1.7.3-py2.py3-none-any.zip
