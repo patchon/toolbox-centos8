@@ -4,13 +4,18 @@ USER root
 
 COPY contrib/entrypoint.sh /
 
-RUN microdnf install -y     \
-  nss_wrapper               \
-  gettext                   \
-  python2                   \
-  bind-utils                \
-  vim                     &&\
-  chmod +x /entrypoint.sh &&\
+ARG pkgs="bind-utils  \
+          gettext     \
+          nss_wrapper \
+          python2     \
+          vim"
+
+ARG url_pg="https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
+
+RUN microdnf install -y ${pkgs} &&\
+  curl -o /tmp/pg.rpm ${url_pg} &&\
+  rpm -Uvh /tmp/pg.rpm          &&\
+  chmod +x /entrypoint.sh       &&\
   chmod g+w /etc/passwd
 
 # RUN dnf install -y https://downloads.apache.org/cassandra/redhat/311x/cassandra-3.11.11-1.noarch.rpm &&\
