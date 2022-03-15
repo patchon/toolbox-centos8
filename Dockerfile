@@ -7,14 +7,16 @@ COPY contrib/entrypoint.sh /
 ARG pkgs="bind-utils  \
           gettext     \
           nss_wrapper \
+          postgresql  \
           python2     \
           vim"
 
 ARG url_pg="https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
-RUN microdnf install -y ${pkgs} &&\
+RUN                               \
   curl -o /tmp/pg.rpm ${url_pg} &&\
   rpm -Uvh /tmp/pg.rpm          &&\
+  microdnf install -y ${pkgs}   &&\
   chmod +x /entrypoint.sh       &&\
   chmod g+w /etc/passwd
 
