@@ -9,6 +9,7 @@ ARG pkgs="bind-utils  \
           nss_wrapper \
           postgresql  \
           python2     \
+          socat       \
           tar         \
           vim"
 
