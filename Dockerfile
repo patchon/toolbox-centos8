@@ -5,13 +5,17 @@ USER root
 COPY contrib/entrypoint.sh /
 
 ARG pkgs="bind-utils  \
+          iputils     \
+          iproute     \
+          jq          \
           gettext     \
           nss_wrapper \
           postgresql  \
           python2     \
           socat       \
           tar         \
-          vim"
+          vim         \
+          wget"
 
 ARG url_pg="https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 ARG url_kcat="https://download.copr.fedorainfracloud.org/results/bvn13/kcat/mageia-8-x86_64/04222553-kcat/kcat-1.7.0-1.mga8.x86_64.rpm"
