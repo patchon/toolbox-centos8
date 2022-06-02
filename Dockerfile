@@ -42,8 +42,9 @@ COPY contrib/entrypoint.sh /
 #RUN                             \
 #  rpm -Uvh ${url_pg}          &&\
 #  microdnf install -y ${pkgs} &&\
-#  chmod +x /entrypoint.sh     &&\
-#  chmod g+w /etc/passwd
+RUN                             \
+  chmod +x /entrypoint.sh     &&\
+  chmod g+w /etc/passwd
 #
 #
 ## Install kcat
