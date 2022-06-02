@@ -4,6 +4,11 @@ USER root
 
 COPY contrib/entrypoint.sh /
 
+# Seems broken in latest ubi, cant install due to
+# perl 5.24 requirement.
+# automake            \
+# libtool             \
+
 ARG pkgs="            \
   bind-utils          \
   cmake               \
@@ -18,7 +23,6 @@ ARG pkgs="            \
   java-1.8.0-openjdk  \
   jq                  \
   libcurl-devel       \
-  libtool             \
   libzstd             \
   nss_wrapper         \
   openssl-devel       \
