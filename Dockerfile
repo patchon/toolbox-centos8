@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi8/ubi:8.6-754
 #FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 USER root
 
-COPY contrib/entrypoint.sh /
+# COPY contrib/entrypoint.sh /
 
 # Seems broken in latest ubi, cant install due to
 # perl 5.24 requirement.
@@ -42,9 +42,9 @@ COPY contrib/entrypoint.sh /
 #RUN                             \
 #  rpm -Uvh ${url_pg}          &&\
 #  microdnf install -y ${pkgs} &&\
-RUN                             \
-  chmod +x /entrypoint.sh     &&\
-  chmod g+w /etc/passwd
+CMD while true; do echo "Hello DD @ $(date)"; sleep 10; done
+#  chmod +x /entrypoint.sh     &&\
+#  chmod g+w /etc/passwd
 #
 #
 ## Install kcat
@@ -76,4 +76,4 @@ RUN                             \
 #  pip3 install six cqlsh      &&\
 #  rm -f /usr/local/bin/cqlsh
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
