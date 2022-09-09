@@ -42,7 +42,7 @@ USER root
 #RUN                             \
 #  rpm -Uvh ${url_pg}          &&\
 #  microdnf install -y ${pkgs} &&\
-CMD while true; do echo "Hello DD @ $(date)"; sleep 10; done
+CMD while true; do echo "Hello DD @ $(date)"; sleep 1; done
 #  chmod +x /entrypoint.sh     &&\
 #  chmod g+w /etc/passwd
 #
